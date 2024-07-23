@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('project_pictures', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('project_id');
-            $table->string('project_picture',200);
-            $table->enum('deleted',['No','Yes'])->default('No');
-            $table->foreign('project_id')->on('projects')
-            ->reference('id');
-            $table->timestamps();
-        });
+        // Check if the table already exists
+        if (!Schema::hasTable('project_pictures')) {
+            Schema::create('project_pictures', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('project_id');
+                $table->string('project_picture', 200);
+                $table->enum('deleted', ['No', 'Yes'])->default('No');
+                $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -31,6 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_pictures');
+        // Optionally, drop the table if it exists
+        if (Schema::hasTable('project_pictures')) {
+            Schema::dropIfExists('project_pictures');
+        }
     }
 };

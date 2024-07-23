@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('faqs', function (Blueprint $table) {
-            $table->id();
-            $table->text('question')->nullable();
-            $table->text('answer')->nullable();    
-           $table->integer('is_active')->default('1');
-            $table->integer('faq_order')->nullable();
-            $table->timestamps();
-        });
+        // Check if the faqs table exists
+        if (!Schema::hasTable('faqs')) {
+            Schema::create('faqs', function (Blueprint $table) {
+                $table->id();
+                $table->text('question')->nullable();
+                $table->text('answer')->nullable();
+                $table->integer('is_active')->default(1);
+                $table->integer('faq_order')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -30,6 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faqs');
+        // Check if the faqs table exists before attempting to drop it
+        if (Schema::hasTable('faqs')) {
+            Schema::dropIfExists('faqs');
+        }
     }
 };

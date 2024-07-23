@@ -13,15 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('departments', function (Blueprint $table) {
-            $table->id();
-            $table->integer('employer_id')->nullable();
-            $table->integer('activity_by')->nullable();    
-            $table->string('name')->nullable();
-            $table->integer('is_active')->default('1');
-            $table->integer('is_deleted')->default('0');   
-            $table->timestamps();
-        });
+        // Check if the departments table exists
+        if (!Schema::hasTable('departments')) {
+            Schema::create('departments', function (Blueprint $table) {
+                $table->id();
+                $table->integer('employer_id')->nullable();
+                $table->integer('activity_by')->nullable();
+                $table->string('name')->nullable();
+                $table->integer('is_active')->default(1); // Changed default to integer value
+                $table->integer('is_deleted')->default(0); // Changed default to integer value
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -31,6 +34,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departments');
+        // Check if the departments table exists before attempting to drop it
+        if (Schema::hasTable('departments')) {
+            Schema::dropIfExists('departments');
+        }
     }
 };

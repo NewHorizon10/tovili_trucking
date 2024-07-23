@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('acl_admin_actions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('admin_module_id')->nullable();
-            $table->string('name')->nullable();    
-           $table->string('function_name')->nullable();
-            $table->integer('is_show')->default('1');
-            $table->timestamps();
-        });
+        // Check if the acl_admin_actions table exists
+        if (!Schema::hasTable('acl_admin_actions')) {
+            Schema::create('acl_admin_actions', function (Blueprint $table) {
+                $table->id();
+                $table->integer('admin_module_id')->nullable();
+                $table->string('name')->nullable();
+                $table->string('function_name')->nullable();
+                $table->integer('is_show')->default(1); // Changed default to integer value
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -30,6 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('acl_admin_actions');
+        // Check if the acl_admin_actions table exists before attempting to drop it
+        if (Schema::hasTable('acl_admin_actions')) {
+            Schema::dropIfExists('acl_admin_actions');
+        }
     }
 };

@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('email_templates', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable();
-            $table->string('subject')->nullable();    
-           $table->string('action')->nullable();
-           $table->text('body')->nullable();
-            $table->timestamps();
-        });
+        // Check if the email_templates table exists
+        if (!Schema::hasTable('email_templates')) {
+            Schema::create('email_templates', function (Blueprint $table) {
+                $table->id();
+                $table->string('name')->nullable();
+                $table->string('subject')->nullable();
+                $table->string('action')->nullable();
+                $table->text('body')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -30,6 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email_templates');
+        // Check if the email_templates table exists before attempting to drop it
+        if (Schema::hasTable('email_templates')) {
+            Schema::dropIfExists('email_templates');
+        }
     }
 };

@@ -13,27 +13,30 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
-            $table->id();
-            $table->string('user_role')->nullable();
-            $table->string('user_role_id')->nullable();
-            $table->string('name')->nullable();
-            $table->string('email')->nullable() ;
-            $table->string('phone_number')->nullable();
-            $table->string('phone_number_prefix')->nullable();
-            $table->string('phone_number_country_code')->nullable();
-            $table->string('password')->nullable();
-            $table->string('is_active')->default('1');
-            $table->string('forgot_password_validate_string')->nullable();
-            $table->integer('is_deleted')->default('0');
-            $table->integer('mangopay_user_id')->nullable();
-            $table->integer('mangopay_user_wallet_id')->nullable();
-            $table->integer('department_id')->nullable();
-            $table->integer('designation_id')->nullable();   
-            $table->rememberToken()->nullable();
-            $table->date('deleted_at')->nullable();
-            $table->timestamps();
-        });
+        // Check if the admins table exists
+        if (!Schema::hasTable('admins')) {
+            Schema::create('admins', function (Blueprint $table) {
+                $table->id();
+                $table->string('user_role')->nullable();
+                $table->string('user_role_id')->nullable();
+                $table->string('name')->nullable();
+                $table->string('email')->nullable();
+                $table->string('phone_number')->nullable();
+                $table->string('phone_number_prefix')->nullable();
+                $table->string('phone_number_country_code')->nullable();
+                $table->string('password')->nullable();
+                $table->string('is_active')->default('1');
+                $table->string('forgot_password_validate_string')->nullable();
+                $table->integer('is_deleted')->default('0');
+                $table->integer('mangopay_user_id')->nullable();
+                $table->integer('mangopay_user_wallet_id')->nullable();
+                $table->integer('department_id')->nullable();
+                $table->integer('designation_id')->nullable();
+                $table->rememberToken()->nullable();
+                $table->date('deleted_at')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -43,6 +46,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        // No action needed if the table already exists
     }
 };

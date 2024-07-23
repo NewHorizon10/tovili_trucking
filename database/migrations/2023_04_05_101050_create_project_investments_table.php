@@ -13,10 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('project_investments', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        // Check if the table already exists
+        if (!Schema::hasTable('project_investments')) {
+            Schema::create('project_investments', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('project_id');
+                $table->unsignedBigInteger('investor_id');
+                $table->decimal('amount', 15, 2);
+                $table->enum('investment_type', ['Equity', 'Debt', 'Convertible']);
+                $table->text('description')->nullable();
+                $table->timestamps();
+
+                // Foreign key constraints
+                $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+                $table->foreign('investor_id')->references('id')->on('investors')->onDelete('cascade');
+            });
+        }
     }
 
     /**
@@ -26,6 +38,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_investments');
+        // Optionally, drop the table if it exists
+        if (Schema::hasTable('project_investments')) {
+            Schema::dropIfExists('project_investments');
+        }
     }
 };

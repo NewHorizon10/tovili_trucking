@@ -13,14 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_social_links', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id');
-            $table->string('social_name');
-            $table->string('social_type')->nullable();
-            $table->string('social_id')->nullable();
-            $table->timestamps();
-        });
+        // Check if the userdevicetokens table exists
+        if (!Schema::hasTable('userdevicetokens')) {
+            Schema::create('userdevicetokens', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('user_id'); // Changed to unsignedBigInteger for consistency
+                $table->string('device_type');
+                $table->string('device_id');
+                $table->string('device_token');
+                $table->timestamps();
+
+                // Optional: Add foreign key constraint if there's a users table
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            });
+        }
     }
 
     /**
@@ -30,6 +36,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_social_links');
+        // Check if the userdevicetokens table exists before attempting to drop it
+        if (Schema::hasTable('userdevicetokens')) {
+            Schema::dropIfExists('userdevicetokens');
+        }
     }
 };

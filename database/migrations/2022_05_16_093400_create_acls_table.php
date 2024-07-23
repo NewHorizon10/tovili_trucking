@@ -13,16 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('acls', function (Blueprint $table) {
-            $table->id();
-            $table->integer('parent_id')->nullable();
-            $table->string('title')->nullable();    
-           $table->text('path')->nullable();
-            $table->text('icon')->nullable();
-            $table->integer('module_order')->nullable();
-            $table->integer('is_active')->default('1');
-            $table->timestamps();
-        });
+        // Check if the acls table exists
+        if (!Schema::hasTable('acls')) {
+            Schema::create('acls', function (Blueprint $table) {
+                $table->id();
+                $table->integer('parent_id')->nullable();
+                $table->string('title')->nullable();
+                $table->text('path')->nullable();
+                $table->text('icon')->nullable();
+                $table->integer('module_order')->nullable();
+                $table->integer('is_active')->default(1); // Changed default to integer value
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -32,6 +35,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('acls');
+        // Check if the acls table exists before attempting to drop it
+        if (Schema::hasTable('acls')) {
+            Schema::dropIfExists('acls');
+        }
     }
 };

@@ -13,15 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('email_logs', function (Blueprint $table) {
-            $table->id();
-            $table->string('email_to')->nullable();
-            $table->string('email_from')->nullable();
-            $table->string('email_type')->nullable();
-            $table->string('subject')->nullable();    
-            $table->text('message')->nullable();
-            $table->timestamps();
-        });
+        // Check if the email_logs table exists
+        if (!Schema::hasTable('email_logs')) {
+            Schema::create('email_logs', function (Blueprint $table) {
+                $table->id();
+                $table->string('email_to')->nullable();
+                $table->string('email_from')->nullable();
+                $table->string('email_type')->nullable();
+                $table->string('subject')->nullable();
+                $table->text('message')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email_logs');
+        // No action needed if the table already exists
     }
 };

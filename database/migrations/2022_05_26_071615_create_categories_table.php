@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name'); 
-            $table->string('image')->nullable();
-            $table->integer('is_active')->default('1');           
-            $table->integer('is_deleted')->default('0');
-            $table->timestamps();
-        });
+        // Check if the categories table exists
+        if (!Schema::hasTable('categories')) {
+            Schema::create('categories', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('image')->nullable();
+                $table->integer('is_active')->default(1); // Changed to integer type and default value
+                $table->integer('is_deleted')->default(0); // Changed to integer type and default value
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -30,6 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        // Check if the categories table exists before attempting to drop it
+        if (Schema::hasTable('categories')) {
+            Schema::dropIfExists('categories');
+        }
     }
 };

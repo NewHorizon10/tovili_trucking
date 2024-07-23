@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lookup_discriptions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('parent_id');
-            $table->integer('language_id');
-            $table->string('code');
-            $table->timestamps();
-        });
+        // Check if the table already exists
+        if (!Schema::hasTable('lookup_discriptions')) {
+            Schema::create('lookup_discriptions', function (Blueprint $table) {
+                $table->id();
+                $table->integer('parent_id');
+                $table->integer('language_id');
+                $table->string('code');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -29,6 +32,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lookup_discriptions');
+        // Optionally, drop the table if it exists
+        if (Schema::hasTable('lookup_discriptions')) {
+            Schema::dropIfExists('lookup_discriptions');
+        }
     }
 };

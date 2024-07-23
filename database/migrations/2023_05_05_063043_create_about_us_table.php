@@ -13,10 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('about_us', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        // Check if the table already exists
+        if (!Schema::hasTable('about_us')) {
+            Schema::create('about_us', function (Blueprint $table) {
+                $table->id();
+                $table->string('title')->nullable();
+                $table->text('description')->nullable();
+                $table->string('image')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -26,6 +32,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about_us');
+        // Optionally, drop the table if it exists
+        if (Schema::hasTable('about_us')) {
+            Schema::dropIfExists('about_us');
+        }
     }
 };

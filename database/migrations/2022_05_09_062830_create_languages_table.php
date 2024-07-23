@@ -13,16 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('languages', function (Blueprint $table) {
-            $table->id();
-            $table->string('title')->nullable();
-            $table->string('listing_title')->nullable();
-            $table->string('lang_code')->nullable();
-            $table->string('folder_code')->nullable() ;
-            $table->string('image')->nullable();
-            $table->string('is_active')->default('1');
-            $table->timestamps();
-        });
+        // Check if the languages table exists
+        if (!Schema::hasTable('languages')) {
+            Schema::create('languages', function (Blueprint $table) {
+                $table->id();
+                $table->string('title')->nullable();
+                $table->string('listing_title')->nullable();
+                $table->string('lang_code')->nullable();
+                $table->string('folder_code')->nullable();
+                $table->string('image')->nullable();
+                $table->string('is_active')->default('1');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -32,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('languages');
+        // No action needed if the table already exists
     }
 };

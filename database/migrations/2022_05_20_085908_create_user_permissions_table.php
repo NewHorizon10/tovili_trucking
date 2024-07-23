@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_permissions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id')->nullable();
-            $table->integer('admin_module_id')->nullable();           
-            $table->integer('is_active')->nullable();
-            $table->timestamps();
-        });
+        // Check if the user_permissions table exists
+        if (!Schema::hasTable('user_permissions')) {
+            Schema::create('user_permissions', function (Blueprint $table) {
+                $table->id();
+                $table->integer('user_id')->nullable();
+                $table->integer('admin_module_id')->nullable();
+                $table->integer('is_active')->default(1); // Added default value
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -29,6 +32,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_permissions');
+        // Check if the user_permissions table exists before attempting to drop it
+        if (Schema::hasTable('user_permissions')) {
+            Schema::dropIfExists('user_permissions');
+        }
     }
 };

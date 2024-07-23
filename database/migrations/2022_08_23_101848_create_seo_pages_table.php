@@ -13,24 +13,27 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('seo_pages', function (Blueprint $table) {
-            $table->id();
-            $table->string('page_id');
-            $table->string('page_name');
-            $table->string('title');
-            $table->longText('meta_description');
-            $table->string('meta_keywords');
-            $table->string('twitter_card');
-            $table->string('twitter_site');
-            $table->string('og_url');
-            $table->string('og_type');
-            $table->string('og_title');
-            $table->longText('og_description');
-            $table->longText('meta_chronicles');
-            $table->longText('og_image');
-            $table->integer('is_deleted')->default('0');
-            $table->timestamps();
-        });
+        // Check if the table already exists
+        if (!Schema::hasTable('seo_pages')) {
+            Schema::create('seo_pages', function (Blueprint $table) {
+                $table->id();
+                $table->string('page_id');
+                $table->string('page_name');
+                $table->string('title');
+                $table->longText('meta_description');
+                $table->string('meta_keywords');
+                $table->string('twitter_card');
+                $table->string('twitter_site');
+                $table->string('og_url');
+                $table->string('og_type');
+                $table->string('og_title');
+                $table->longText('og_description');
+                $table->longText('meta_chronicles');
+                $table->longText('og_image');
+                $table->integer('is_deleted')->default(0); // Default value should be an integer, not a string
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -40,6 +43,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seo_pages');
+        // Optionally, drop the table if it exists
+        if (Schema::hasTable('seo_pages')) {
+            Schema::dropIfExists('seo_pages');
+        }
     }
 };
