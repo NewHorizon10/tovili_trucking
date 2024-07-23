@@ -161,9 +161,9 @@ jobs:
 
             echo "DEPLOY_PATH is: $DEPLOY_PATH"
             echo "Attempting to change to deploy path: $DEPLOY_PATH"
-            if [ -d "/var/www/tovil/tovil_tracking" ]; then
+            if [ -d "/var/www/tovil/tovili_trucking" ]; then
               echo "Directory exists: $DEPLOY_PATH"
-              cd "/var/www/tovil/tovil_tracking"
+              cd "/var/www/tovil/tovili_trucking"
               echo "Changed to directory: $(pwd)"
               echo "Listing directory contents:"
               ls -al
