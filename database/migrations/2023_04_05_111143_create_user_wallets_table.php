@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_wallets', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->double('available_balance')->default(0);
-            $table->double('reserved_balance')->default(0);
-            $table->foreign('user_id')->on('users')
-            ->reference('id');
-            $table->timestamps();
-        });
+        // Check if the table already exists
+        if (!Schema::hasTable('user_wallets')) {
+            Schema::create('user_wallets', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('user_id');
+                $table->double('available_balance', 15, 2)->default(0); // Changed to double with precision
+                $table->double('reserved_balance', 15, 2)->default(0); // Changed to double with precision
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Corrected foreign key syntax
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -31,6 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_wallets');
+        // Optionally, drop the table if it exists
+        if (Schema::hasTable('user_wallets')) {
+            Schema::dropIfExists('user_wallets');
+        }
     }
 };

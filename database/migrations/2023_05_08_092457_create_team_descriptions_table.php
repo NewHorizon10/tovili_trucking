@@ -13,10 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('team_descriptions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        // Check if the table already exists
+        if (!Schema::hasTable('team_descriptions')) {
+            Schema::create('team_descriptions', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('team_id'); // Reference to the team
+                $table->unsignedBigInteger('language_id'); // Reference to the language
+                $table->string('title'); // Title or name of the team description
+                $table->text('description')->nullable(); // Description text
+                $table->timestamps();
+
+                // Foreign key constraints
+                $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+                $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
+            });
+        }
     }
 
     /**
@@ -26,6 +37,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('team_descriptions');
+        // Optionally, drop the table if it exists
+        if (Schema::hasTable('team_descriptions')) {
+            Schema::dropIfExists('team_descriptions');
+        }
     }
 };

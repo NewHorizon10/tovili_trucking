@@ -13,17 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
-            $table->id();
-            $table->string('key')->nullable();
-            $table->text('value')->nullable();    
-           $table->string('title')->nullable();
-            $table->string('description')->nullable();
-            $table->text('input_type')->nullable();
-            $table->integer('editable')->nullable();
-            $table->string('weight')->nullable();
-            $table->timestamps();
-        });
+        // Check if the settings table exists
+        if (!Schema::hasTable('settings')) {
+            Schema::create('settings', function (Blueprint $table) {
+                $table->id();
+                $table->string('key')->nullable();
+                $table->text('value')->nullable();
+                $table->string('title')->nullable();
+                $table->string('description')->nullable();
+                $table->text('input_type')->nullable();
+                $table->integer('editable')->nullable();
+                $table->string('weight')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -33,6 +36,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        // Check if the settings table exists before attempting to drop it
+        if (Schema::hasTable('settings')) {
+            Schema::dropIfExists('settings');
+        }
     }
 };

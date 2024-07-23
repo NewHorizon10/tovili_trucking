@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('blog_descriptions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('parent_id');
-            $table->integer('language_id'); 
-           $table->string('page_name')->nullable();
-           $table->text('body')->nullable();
-            $table->timestamps();
-        });
+        // Check if the table already exists
+        if (!Schema::hasTable('blog_descriptions')) {
+            Schema::create('blog_descriptions', function (Blueprint $table) {
+                $table->id();
+                $table->integer('parent_id');
+                $table->integer('language_id');
+                $table->string('page_name')->nullable();
+                $table->text('body')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -30,6 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog_descriptions');
+        // Optionally, drop the table if it exists
+        if (Schema::hasTable('blog_descriptions')) {
+            Schema::dropIfExists('blog_descriptions');
+        }
     }
 };

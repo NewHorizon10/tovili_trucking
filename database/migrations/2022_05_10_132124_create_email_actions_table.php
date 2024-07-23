@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('email_actions', function (Blueprint $table) {
-            $table->id();
-            $table->string('action')->nullable();
-            $table->string('options')->nullable();
-            $table->timestamps();
-        });
+        // Check if the email_actions table exists
+        if (!Schema::hasTable('email_actions')) {
+            Schema::create('email_actions', function (Blueprint $table) {
+                $table->id();
+                $table->string('action')->nullable();
+                $table->string('options')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email_actions');
+        // No action needed if the table already exists
     }
 };

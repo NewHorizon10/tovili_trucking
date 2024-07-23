@@ -13,10 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        // Check if the table already exists
+        if (!Schema::hasTable('clients')) {
+            Schema::create('clients', function (Blueprint $table) {
+                $table->id();
+                $table->string('name'); // Client's name
+                $table->string('email')->unique(); // Client's email, must be unique
+                $table->string('phone_number')->nullable(); // Client's phone number, optional
+                $table->text('address')->nullable(); // Client's address, optional
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -26,6 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        // Optionally, drop the table if it exists
+        if (Schema::hasTable('clients')) {
+            Schema::dropIfExists('clients');
+        }
     }
 };

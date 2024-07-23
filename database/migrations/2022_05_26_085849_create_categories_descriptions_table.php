@@ -13,13 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories_descriptions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('parent_id'); 
-            $table->integer('language_id'); 
-            $table->string('name')->nullable(); 
-            $table->timestamps();
-        });
+        // Check if the categories_descriptions table exists
+        if (!Schema::hasTable('categories_descriptions')) {
+            Schema::create('categories_descriptions', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('parent_id'); // Changed to unsignedBigInteger to match id type
+                $table->unsignedBigInteger('language_id'); // Changed to unsignedBigInteger for consistency
+                $table->string('name')->nullable();
+                $table->timestamps();
+
+                // Optional: Add foreign key constraints if applicable
+                $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
+                $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
+            });
+        }
     }
 
     /**
@@ -29,6 +36,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories_descriptions');
+        // Check if the categories_descriptions table exists before attempting to drop it
+        if (Schema::hasTable('categories_descriptions')) {
+            Schema::dropIfExists('categories_descriptions');
+        }
     }
 };

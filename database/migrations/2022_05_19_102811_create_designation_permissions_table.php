@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('designation_permissions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('designation_id')->nullable();
-            $table->integer('admin_module_id')->nullable();
-            $table->integer('is_active')->nullable();    
-            $table->timestamps();
-        });
+        // Check if the designation_permissions table exists
+        if (!Schema::hasTable('designation_permissions')) {
+            Schema::create('designation_permissions', function (Blueprint $table) {
+                $table->id();
+                $table->integer('designation_id')->nullable();
+                $table->integer('admin_module_id')->nullable();
+                $table->integer('is_active')->default(1); // Added default value
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -29,6 +32,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('designation_permissions');
+        // Check if the designation_permissions table exists before attempting to drop it
+        if (Schema::hasTable('designation_permissions')) {
+            Schema::dropIfExists('designation_permissions');
+        }
     }
 };

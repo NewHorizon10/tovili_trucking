@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cms', function (Blueprint $table) {
-            $table->id();
-            $table->string('slug')->nullable();
-            $table->string('page_name')->nullable();
-            $table->string('title')->nullable() ;    
-            $table->text('body')->nullable();   
-            $table->timestamps();
-        });
+        // Check if the cms table exists
+        if (!Schema::hasTable('cms')) {
+            Schema::create('cms', function (Blueprint $table) {
+                $table->id();
+                $table->string('slug')->nullable();
+                $table->string('page_name')->nullable();
+                $table->string('title')->nullable();
+                $table->text('body')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cms');
+        // No action needed if the table already exists
     }
 };

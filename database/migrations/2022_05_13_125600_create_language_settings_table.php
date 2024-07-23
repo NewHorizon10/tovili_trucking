@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('language_settings', function (Blueprint $table) {
-            $table->id();
-            $table->string('msgid')->nullable();
-            $table->string('locale')->nullable();
-            $table->string('msgstr')->nullable();
-            $table->timestamps();
-        });
+        // Check if the language_settings table exists
+        if (!Schema::hasTable('language_settings')) {
+            Schema::create('language_settings', function (Blueprint $table) {
+                $table->id();
+                $table->string('msgid')->nullable();
+                $table->string('locale')->nullable();
+                $table->string('msgstr')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -29,6 +32,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('language_settings');
+        // Check if the language_settings table exists before attempting to drop it
+        if (Schema::hasTable('language_settings')) {
+            Schema::dropIfExists('language_settings');
+        }
     }
 };
