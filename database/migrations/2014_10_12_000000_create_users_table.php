@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +12,6 @@ return new class extends Migration
      */
     public function up()
     {
-        // Check if the users table exists
         if (!Schema::hasTable('users')) {
             Schema::create('users', function (Blueprint $table) {
                 $table->id();
@@ -47,7 +45,7 @@ return new class extends Migration
                 $table->integer('language')->nullable();
                 $table->string('currency')->nullable();
                 $table->integer('nationality')->nullable();
-                $table->rememberToken()->nullable();
+                $table->rememberToken();
                 $table->date('deleted_at')->nullable();
                 $table->timestamps();
             });
@@ -61,6 +59,6 @@ return new class extends Migration
      */
     public function down()
     {
-        // No action needed if the table already exists
+        Schema::dropIfExists('users');
     }
 };
