@@ -1,0 +1,106 @@
+# Laravel-specific exclusions
+/vendor
+/node_modules
+
+# Laravel 4 specific
+/bootstrap/compiled.php
+/app/storage
+
+# Laravel 5 & 6 specific
+/public/storage
+/public/hot
+/storage/*.key
+/storage/framework/*
+/storage/logs/*
+/storage/app/public
+
+# Laravel 7 & 8 specific
+/storage/debugbar
+/storage/decompiled
+
+# Laravel 9 specific
+/storage/clockwork
+
+# Laravel 10 specific
+/.phpunit.result.cache
+
+# Environment variables
+.env
+.env.backup
+.env.local
+.env.development
+.env.testing
+.env.staging
+.env.production
+.env.*.local
+
+# Ignoring sensitive directories
+/.idea
+/.vscode
+
+# Ignore IDE specific files
+*.sublime-workspace
+*.sublime-project
+.idea/
+.vscode/
+*.code-workspace
+
+# OS-generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ignoring log files
+*.log
+
+# Ignore Composer and NPM/Yarn lock files
+composer.lock
+yarn.lock
+npm-debug.log
+
+# Ignore cache files
+npm-cache
+
+# Ignore asset build files
+/public/hot
+/public/mix-manifest.json
+/public/js
+/public/css
+/public/img
+/public/fonts
+/public/svg
+
+# Ignore compiled PHP files
+.phpunit.result.cache
+.phpunit.cache
+phpunit.xml
+phpunit.xml.dist
+
+# Ignoring debug bar files
+/debugbar
+/storage/debugbar
+
+# Ignore test coverage reports
+/coverage
+
+# Ignore IDE specific directories
+/.idea
+/.vscode
+
+# Ignore deployment related files
+/deploy.env
+deploy.lock
+
+# Ignore Laravel Telescope files
+/telescope
+
+# Ignore generated backup files
+*.bak
+
+# Ignore system files
+Thumbs.db

@@ -1,0 +1,10 @@
+var config = module.exports = {};
+config.port 			                    = process.env.PORT;
+config.db 				                    = {};
+config.db.host 			                    = process.env.DB_HOST;
+config.db.dbname 		                    = process.env.DB_DATABASE;
+config.db.user 			                    = process.env.DB_USER;
+config.db.pass 			                    = process.env.DB_PASSWORD;
+config.db.profile_image_http_path 			= process.env.profile_image_http_path;
+config.db.profile_no_image_http_path 		= process.env.profile_no_image_http_path;
+config.db.attacment_http_path 		        = process.env.attacment_http_path;

@@ -1,0 +1,141 @@
+.rtl #header .lang_drop .flag_ico {
+	right: 0;
+	left: auto !important;
+}
+/* .rtl #header .lang_drop .flag_ico {
+	right: 0;
+	left: auto !important;
+} */
+.rtl #header .navbar-expand-lg .navbar-nav .nav-link.lang_drop {
+	padding-right: 32px;
+	padding-left: 5px;
+	
+}
+.rtl #header .lang_dropdown .flag_ico {
+	right: 9px;
+}
+.rtl .langugae_filter i {
+	margin: 1px 7px 0 0;
+}
+.rtl .custom_checkbox input[type="checkbox"], .custom_checkbox input[type="radio"] {
+	margin-left: 10px;
+	margin-right: 0;
+}
+.rtl .homePage .lang_country {
+	padding: 5px 37px 5px 5px;
+}
+.rtl .navbar-toggler {
+	right: auto;
+	left: 0;
+}
+.rtl .lang_dropdown {
+	right: auto;
+	left: 8px;
+}
+.rtl .form-control {
+	text-align: right;
+}
+
+/* .rtl .form_page_subtitle, .rtl #user-drop h4 span, .rtl .banner-para, .rtl #header .navbar-nav {
+    direction: ltr;
+} */
+
+.rtl .password_box span {
+    left: 37px;
+    right: unset;
+}
+
+.rtl .form_list_nav {
+	direction: ltr;
+}
+
+
+/*  ===========  */
+
+.rtl .reserved_title {
+    direction: ltr;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.rtl .footer-links_page {
+    direction: rtl;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.rtl #user-drop h4 span {
+    direction: ltr;
+}
+.rtl .contact-add {
+    direction: ltr;
+}
+.rtl .form_section_bg::after {
+	background: linear-gradient(247deg, rgb(6 24 98 / 71%) 12.65%, rgba(21, 53, 185, 0) 66.68%);
+}
+.rtl .support-btn {
+    direction: rtl;
+    display: inline-flex;
+    align-items: center;																						
+    flex-direction: row-reverse;
+}
+.rtl .support-btn svg {
+    margin-left: 11px;
+}
+.plan-switch-box .form-check {
+    flex-direction: row-reverse;
+}
+.rtl .our-plans .row ,.rtl .Person_info_row{
+	flex-direction: row-reverse;
+}
+.rtl .userTypeOuterBox {
+    flex-direction: row-reverse;
+}
+.rtl .form_page_subtitle {
+    direction: ltr;
+}
+.rtl .form_list_tab .row{
+	flex-direction: row-reverse;
+}
+.rtl .logo_select_input{
+	text-align: end;
+}
+.rtl .logo_select_input .browseFile{
+	direction: ltr;
+}
+.rtl .otp.form-control{
+	text-align: center;
+}
+.rtl .otpRow {
+    direction: ltr;
+}
+.rtl .id_password_icon{
+	padding-left: 45px;
+}
+.rtl .reverse_fild{
+	flex-direction: row-reverse;
+}
+@media (min-width: 992) {
+	.rtl #header .navbar-nav {
+		direction: ltr;
+	}
+}
+
+@media (max-width: 991.98px) {
+	.rtl #header  .extra_nav.for_mobile {
+		margin-left: 32px !important;
+	}
+	
+	
+	
+	.rtl #header .navbar-expand-lg .navbar-nav .nav-item.langugae_filter {
+	margin-right: 0 !important;
+	
+}
+
+.rtl header .collapse:not(.show).menu-show {
+    right: 0px !important;
+}
+.rtl header .collapse:not(.show) {
+    right: -300px;
+}
+
+}

@@ -1,0 +1,231 @@
+@media screen and (min-device-width: 1200px) and (max-height: 700px) {  
+}
+
+@media (min-width: 1200px) and (max-width: 1440px) {
+    .mothlyRequest_content h3 {
+        font-size: 18px;
+    }
+
+    .mothlyRequestBox {
+        gap: 20px;
+    }
+
+    .mothlyRequest_content h2 {
+        font-size: 40px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1309px) {
+}
+
+@media (min-width: 1200px) {
+}
+
+@media (max-width: 1199.98px) {
+    .dahboard_whiteSpace {
+        white-space: nowrap;
+    }
+    
+    .dashboard_notificationContent p:last-child {
+        min-width: 80px;
+    }
+
+    .mailIcon_notification {
+        width: 15%;
+    }
+
+    .dashboard_notificationContent {
+        width: 85%;
+    }
+}
+
+@media (min-width: 992px) {
+    .theiaStickySidebar {
+        padding-left: 10px;
+
+    }
+    .side_menu_forMobile, .user_dropdown_forMobile {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .dashboard-nav-item {
+        font-size: 14px;
+    }
+    
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+    .mothlyRequest_content h3 {
+        font-size: 15px;
+    }
+
+    .mothlyRequestBox {
+        gap: 10px;
+    }
+
+    .mothlyRequest_content h2 {
+        font-size: 35px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .dashbord_page #header.dashboard-header {
+        height: 70px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .dashboard-main {
+        padding-top: 112px;
+    }
+    
+    .navbar-nav.side_menu_forMobile {
+        margin-bottom: 13px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 11px;
+    }
+
+    #sideMenu {
+        display: none;
+    }
+
+    .for_desktop_extra {
+        display: none;
+    }
+
+    header .collapse:not(.show).menu-show {
+        right: 0px;
+        overflow: auto;
+        height: 100%;
+    }
+    
+    header .collapse:not(.show) {
+        right: -300px;
+    }
+
+    .user_dropdown_forMobile {
+        /* position: absolute; */
+        /* top: 70px; */
+        /* left: 0; */
+        /* right: 0; */
+        /* background: #f3eeee; */
+        padding: 5px 10px 13px;
+        margin-top: -17px;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 17px;
+    }
+
+    /* .dashboard-header .collapse:not(.show).menu-show {
+        padding-top: 130px;
+    } */
+
+    .user_dropdown_forMobile a {
+        flex-direction: row-reverse;
+        margin: 0;
+    }
+
+    .user_dropdown_forMobile #user-drop h4 span {
+        text-align: right;
+        direction: ltr;
+    }
+
+    #user-drop h4, #user-drop h4 span {
+        color: #30383d;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .dashbord_page #header.dashboard-header {
+        height: 75px;
+    }
+    .avtarEdit-main {
+        max-width: 159px;
+    }
+    .avatar-upload {
+        height: 159px;
+    }
+
+    .dashboardRight_block_wrapper {      
+        padding: 20px 20px 30px;
+      }
+    .avtarEdit-main {
+        margin: 0 0 40px 0;
+    }
+    .profile-title {
+        margin-bottom: 15px;
+    }
+    .pageTopTitle {
+        margin-bottom: 20px;
+    }
+    .dashboard_notificationContent {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .RightBlockTitle {
+        font-size: 20px;
+    }
+
+    .tableBlockTitle {
+        font-size: 18px;
+    }
+
+    .transportRequestBtn {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+@media (max-width: 575.98px) {
+    /* .dashboard_notificationContent p {
+        font-size: 12px;
+    } */
+
+    .table_mailIcon {
+        min-width: 30px;
+        min-height: 30px;
+        width: 30px;
+        height: 30px;
+        padding: 4px 0 0;
+    }
+
+    .table_mailIcon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .mothlyRequest_content h2 {
+        font-size: 35px;
+    }
+
+    .mothlyRequestBox {
+        gap: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 25px 20px;
+    }
+
+    .mothlyRequest_content h3 {
+        font-size: 17px;
+    }
+
+    .pageTopTitle {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .RightBlockTitle {
+        margin-bottom: 10px;
+    }
+    /* .companyFormBox .otp_verification {
+        width: min(275px , 405px);
+    } */
+}
